@@ -1,0 +1,9 @@
+services:
+  postgres:
+    image: postgres:17.4
+    ports: 
+      - 5432:5432
+    environment:
+      POSTGRES_DB: B2B_ORGANIZATIONS
+      POSTGRES_USER: LOHIT
+      POSTGRES_PASSWORD: PASS3010
