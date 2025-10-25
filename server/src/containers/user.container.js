@@ -1,6 +1,6 @@
 import db from '../../db/index.js';
 import { users } from '../../drizzle/schema.js';
-import { eq } from 'drizzle-orm';
+import { eq , and} from 'drizzle-orm';
 const getAllOrgUsers = async(req, res) => {
     const orgId = req.params.orgId;
     const usersInOrg = await db
@@ -41,13 +41,25 @@ const updateUserInOrg = async (req, res) => {
     res.status(200).send(updatedUser);
 }
 const deleteUserInOrg = async (req, res) => {
-    const orgId = req.params.orgId;
+     const orgId = req.params.orgId;
     const userId = req.params.userId;
-    await db
-        .delete()
-        .from(users)
-        .where(eq(users.id, userId), eq(users.org_id, orgId));
-    res.status(204).send();
+
+
+     try {
+       const deleted = await db
+         .delete(users)
+         .where(and(eq(users.user_id, userId), eq(users.org_id, orgId)))
+         .returning();
+
+       if (deleted.length === 0) {
+         return res.status(404).send({ message: "User not found" });
+       }
+
+       res.status(200).send({ message: "User deleted", user: deleted[0] });
+     } catch (err) {
+       console.error("❌ Delete error:", err);
+       res.status(500).send({ message: "Failed to delete user" });
+     }
 }
 
 

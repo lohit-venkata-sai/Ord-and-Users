@@ -23,6 +23,7 @@ export const regionEnum = pgEnum("region_enum", [
 export const languageEnum = pgEnum("language_enum", ["English", "Hindi", "French", "Spanish", "Arabic"]);
 
 export const userRoleEnum = pgEnum("user_role_enum", ["co-ordinator", "admin"]);
+export const statusEnum = pgEnum("status_enum", ["active", "inactive", "blocked"]);
 
 // Organizations table
 export const organizations = pgTable("organizations", {
@@ -32,7 +33,7 @@ export const organizations = pgTable("organizations", {
   org_mail: text("org_mail").notNull(), // NOT NULL
   org_contact: text("org_contact").notNull(), // NOT NULL
   primary_admin_name: text("primary_admin_name").default(null),
-  "primary_admin_mailId": text("primary_admin_mailId").default(null),
+  primary_admin_mailId: text("primary_admin_mailId").default(null),
   support_email: text("support_email").default(null),
   phone_no: text("phone_no").default(null),
   alt_phone_no: text("alt_phone_no").default(null),
@@ -44,7 +45,7 @@ export const organizations = pgTable("organizations", {
   language: languageEnum("language").default("English"),
   profile_img_url: text("profile_img_url").default(""),
   website_url: text("website_url").default(null),
-  status: boolean("status").default(true),
+  status: statusEnum("status").default("active"),
 });
 
 export const users = pgTable("users", {
