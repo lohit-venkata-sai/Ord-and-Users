@@ -32,11 +32,11 @@ const BasicDetails = ({ orgDetails }) => {
     try {
       const [tzRes, regionRes, langRes, coordRes, statusRes] =
         await Promise.all([
-          fetch("http://localhost:3010/org/time-zone-enum"),
-          fetch("http://localhost:3010/org/region-enum"),
-          fetch("http://localhost:3010/org/language-enum"),
-          fetch("http://localhost:3010/org/max-active-coordinators-enum"),
-          fetch("http://localhost:3010/org/status-enum"),
+          fetch(`${import.meta.env.VITE_API_URL}/org/time-zone-enum`),
+          fetch(`${import.meta.env.VITE_API_URL}/org/region-enum`),
+          fetch(`${import.meta.env.VITE_API_URL}/org/language-enum`),
+          fetch(`${import.meta.env.VITE_API_URL}/org/max-active-coordinators-enum`),
+          fetch(`${import.meta.env.VITE_API_URL}/org/status-enum`),
         ]);
 
       const [tzData, regionData, langData, coordData, statusData] =
