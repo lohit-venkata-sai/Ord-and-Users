@@ -1,5 +1,6 @@
 import { pgTable, serial, text, uuid, varchar, integer, pgEnum, timestamp, boolean } from "drizzle-orm/pg-core";
-
+import { randomUUID } from "crypto";
+import { relations } from "drizzle-orm";
 
 // Enums
 export const maxActiveCoordinatorsEnum = pgEnum(

@@ -7,4 +7,6 @@ const pool = new Pool({
   ssl: { rejectUnauthorized: false }, // ✅ REQUIRED for Supabase + Render
 });
 
-export const db = drizzle(pool);
+const db = drizzle(pool);
+
+export default db;
