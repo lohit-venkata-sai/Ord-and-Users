@@ -1,16 +1,24 @@
 import db from '../../db/index.js';
 import { users } from '../../drizzle/schema.js';
 import { eq , and} from 'drizzle-orm';
-const getAllOrgUsers = async(req, res) => {
-    const orgId = req.params.orgId;
-    const usersInOrg = await db
-        .select()
-        .from(users)
-        .where(eq(users.org_id, orgId));
-    if(!usersInOrg || usersInOrg.length === 0){
-        return res.status(404).send({message: "No users found in this organization"});
+const getAllOrgUsers = async (req, res) => {
+    try {
+        const orgId = req.params.orgId;
+        const usersInOrg = await db
+          .select()
+          .from(users)
+          .where(eq(users.org_id, orgId));
+        if (!usersInOrg || usersInOrg.length === 0) {
+          return res
+            .status(404)
+            .send({ message: "No users found in this organization" });
+        }
+        return res.status(200).send(usersInOrg);
+    } catch (error) {
+        console.log(error.message);
+        return res.status(500).send({ error: "internal server issue" });
     }
-    res.status(200).send(usersInOrg);
+    
 }
 const createUserInOrg = async (req, res) => {
     const orgId = req.params.orgId;
