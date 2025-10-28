@@ -3,9 +3,17 @@ import db from "../../db/index.js";
 import {organizations,users} from "../../drizzle/schema.js";
 
 const getAllOrgDetails = async (req, res) => {
+  try {
     const orgDetails = await db.select().from(organizations);
-    return res.status(200).send({orgDetails});
-}
+    return res.status(200).send({ orgDetails });
+  } catch (error) {
+    console.error("🔥 Database error:", error.message);
+    return res.status(500).send({
+      message: "Internal server issue",
+      error: error.message,
+    });
+  }
+};
 const getOrgDetails = async (req,res)=>{
     const orgDetails = req.org;
     return res.status(200).send({orgDetails});
