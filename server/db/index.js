@@ -1,7 +1,10 @@
-import { drizzle } from 'drizzle-orm/node-postgres'
-import "dotenv/config";
-// postgres://<username>:<password>@<host>:<port>/<db_name>
-console.log(process.env.POSTGRES_URL);
-const db = drizzle(process.env.POSTGRES_URL); 
+import { drizzle } from "drizzle-orm/node-postgres";
+import pkg from "pg";
+const { Pool } = pkg;
 
-export default db;
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false }, // ✅ REQUIRED for Supabase + Render
+});
+
+export const db = drizzle(pool);
