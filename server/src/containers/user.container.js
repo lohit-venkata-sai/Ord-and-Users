@@ -16,7 +16,7 @@ const getAllOrgUsers = async (req, res) => {
         return res.status(200).send(usersInOrg);
     } catch (error) {
         console.log(error.message);
-        return res.status(500).send({ error: "internal server issue" });
+        return res.status(500).send({ message: "internal server issue",error });
     }
     
 }
