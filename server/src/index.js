@@ -3,6 +3,19 @@ import orgRouter from "./routers/org.route.js";
 import userRouter from "./routers/user.route.js";
 import cors from 'cors'
 
+import { sql } from "drizzle-orm";
+import db from "../db/index.js";
+
+(async () => {
+  try {
+    const result = await db.execute(
+      sql`SELECT current_database(), current_user;`
+    );
+    console.log("✅ Connected to DB:", result);
+  } catch (err) {
+    console.error("❌ Database connection failed:", err.message);
+  }
+})();
 
 const app = express();
 app.use(cors());
