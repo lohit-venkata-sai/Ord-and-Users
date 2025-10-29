@@ -1,27 +1,25 @@
 import React, { useEffect, useRef, useState } from "react";
-import Loading from '../components/Loading.jsx'
-import {useNavigate} from 'react-router-dom'
+import Loading from "../components/Loading.jsx";
+import { useNavigate } from "react-router-dom";
 import { GoHome } from "react-icons/go";
 import { FaAngleRight } from "react-icons/fa6";
 import { IoClose } from "react-icons/io5";
 import { FiSearch } from "react-icons/fi";
-import Funnel from "../assets/funnel.svg";
 import Button from "../components/Button.jsx";
-import Bin from "../assets/bin.svg";
-import Eye from "../assets/eye.svg";
+import { Bin, Eye, Funnel } from "../../public/svgs.jsx";
 import Drawer from "@mui/material/Drawer";
 const OrganizationList = () => {
   const navigate = useNavigate();
   const formRef = useRef();
   const [isOpen, setIsOpen] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [organizations, setOrganozations] = useState([]);
   const [details, setDetails] = useState({
     org_name: "",
     org_slug: "",
     org_mail: "",
-    org_contact:"",
+    org_contact: "",
   });
   const getOrganizationsList = async () => {
     try {
@@ -30,15 +28,14 @@ const OrganizationList = () => {
       if (!res.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      const { orgDetails } = await res.json(); 
+      const { orgDetails } = await res.json();
       setOrganozations(orgDetails);
     } catch (e) {
       setError(e);
-    }
-    finally {
+    } finally {
       setIsLoading(false);
     }
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -102,9 +99,12 @@ const OrganizationList = () => {
     setError("");
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/org/o/${orgSlug}`, {
-        method: "DELETE",
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/org/o/${orgSlug}`,
+        {
+          method: "DELETE",
+        }
+      );
 
       if (!res.ok) {
         const data = await res.json();
@@ -122,13 +122,13 @@ const OrganizationList = () => {
 
   const handleMoreDetails = (slug) => {
     navigate(`/${slug}`);
-  }
+  };
   useEffect(() => {
     getOrganizationsList();
     console.log(organizations);
   }, []);
-  if (isLoading) return <Loading />
-  if (error || error.length > 0) <div>there is an error { error.message}</div> 
+  if (isLoading) return <Loading />;
+  if (error || error.length > 0) <div>there is an error {error.message}</div>;
   return (
     <div className="flex flex-col gap-3 px-[70px] mb-10">
       <div className="mt-2 text-[#777777] flex gap-3 items-center  py-2 justify-between">
@@ -354,7 +354,7 @@ const OrganizationList = () => {
                 </form>
                 <div>
                   {error.length > 0 && (
-                    <div className="py-3 text-red-500"> {error }</div>
+                    <div className="py-3 text-red-500"> {error}</div>
                   )}
                 </div>
               </main>

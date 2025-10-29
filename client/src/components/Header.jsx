@@ -1,8 +1,5 @@
 import React from 'react'
-import Logo from '../assets/logo.svg'
-import Bell from '../assets/bell.svg'
-import HeadSet from '../assets/head-set.svg'
-import Avatar from '../assets/avatar.svg'
+import { Logo,Bell,HeadSet,Avatar} from "../../public/svgs.jsx"
 const Header = () => {
   return (
     <div className="h-18 border px-8 py-4 bg-white flex items-center justify-between shadow-md">

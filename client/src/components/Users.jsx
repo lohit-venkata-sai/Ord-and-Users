@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Button from "./Button.jsx";
-import Bin from "../assets/bin.svg";
+import { Bin, PencilEdit } from "../../public/svgs.jsx";
 import Drawer from "@mui/material/Drawer";
-import PencilEdit from "../assets/penciledit.svg";
 import { IoClose } from "react-icons/io5";
 
-const Users = ({orgDetails}) => {
+const Users = ({ orgDetails }) => {
   const { org_id } = orgDetails;
   const [users, setUsers] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -15,9 +14,7 @@ const Users = ({orgDetails}) => {
 
   const fetchUsers = async () => {
     try {
-      const res = await fetch(
-        `${import.meta.env.VITE_API_URL}/user/${org_id}`
-      );
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/user/${org_id}`);
       const data = await res.json();
       setUsers(data || []);
     } catch (err) {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Pencil from "../assets/pencil.svg";
+import { Pencil } from "../../public/svgs.jsx";
 import Button from "../components/Button.jsx";
 
 const BasicDetails = ({ orgDetails }) => {
@@ -35,7 +35,9 @@ const BasicDetails = ({ orgDetails }) => {
           fetch(`${import.meta.env.VITE_API_URL}/org/time-zone-enum`),
           fetch(`${import.meta.env.VITE_API_URL}/org/region-enum`),
           fetch(`${import.meta.env.VITE_API_URL}/org/language-enum`),
-          fetch(`${import.meta.env.VITE_API_URL}/org/max-active-coordinators-enum`),
+          fetch(
+            `${import.meta.env.VITE_API_URL}/org/max-active-coordinators-enum`
+          ),
           fetch(`${import.meta.env.VITE_API_URL}/org/status-enum`),
         ]);
 

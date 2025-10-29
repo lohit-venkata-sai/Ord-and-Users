@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
-import Loading from './components/Loading'
-import Headers from './components/Header.jsx'
-import Button from './components/Button.jsx'
-import ManageB2BOrg from './components/ManageB2BOrg.jsx'
+import React, { useState } from "react";
+import Loading from "./components/Loading";
+import Headers from "./components/Header.jsx";
+import Button from "./components/Button.jsx";
+import ManageB2BOrg from "./components/ManageB2BOrg.jsx";
 const App = () => {
   const [tab, setTab] = useState(1);
   return (
-    <div className="h-screen w-screen text-white flex flex-col gap-2">
+    <div className="h-screen w-screen text-white flex flex-col gap-2 overflow-x-hidden">
       <header>
         <Headers />
       </header>
@@ -30,9 +30,9 @@ const App = () => {
           </div>
         </div>
       </main>
-      <div className="h-full">{tab === 0 ? <Loading /> : <ManageB2BOrg/>}</div>
+      <div className="h-full">{tab === 0 ? <Loading /> : <ManageB2BOrg />}</div>
     </div>
   );
-}
+};
 
-export default App
+export default App;

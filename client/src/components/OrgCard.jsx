@@ -1,13 +1,14 @@
 import { CiMail } from "react-icons/ci";
-import Envelope from "../assets/envelope.svg"
-import Phone from "../assets/phone.svg"
-import World from "../assets/world.svg"
+import { Envelope, Phone, World } from "../../public/svgs.jsx";
+
 export default function OrganizationCard({
-        orgName,
-            imgUrl = "https://upload.wikimedia.org/wikipedia/en/4/44/MIT_Seal.svg",
-          mail,
-          contact,
-          url,status}) {
+  orgName,
+  imgUrl = "https://upload.wikimedia.org/wikipedia/en/4/44/MIT_Seal.svg",
+  mail,
+  contact,
+  url,
+  status,
+}) {
   return (
     <div className="flex rounded-md justify-between p-5 bg-white shadow-md">
       {/* Left Section */}
