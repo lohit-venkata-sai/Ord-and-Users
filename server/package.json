@@ -4,11 +4,11 @@
   "type": "module",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node --watch src/index.js",
+    "dev": "node src/index.js",
+    "start": "node src/index.js",
+    "build": "npm run drizzle:push",
     "drizzle:push": "drizzle-kit push",
-    "drizzle:studio": "drizzle-kit studio",
-    "build": "echo 'No build needed'"
+    "drizzle:studio": "drizzle-kit studio"
   },
   "keywords": [],
   "author": "",
