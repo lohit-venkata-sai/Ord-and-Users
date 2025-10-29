@@ -5,7 +5,8 @@ const { Pool } = pkg;
 
 const pool = new Pool({
   connectionString: process.env.POSTGRES_URL,
-  ssl: { rejectUnauthorized: false }, // ✅ REQUIRED for Supabase + Render
+  ssl: { rejectUnauthorized: false },
+  family: 4,
 });
 
 const db = drizzle(pool);
