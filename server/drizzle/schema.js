@@ -33,14 +33,14 @@ export const organizations = pgTable("organizations", {
   org_mail: text("org_mail").notNull(), // NOT NULL
   org_contact: text("org_contact").notNull(), // NOT NULL
   primary_admin_name: text("primary_admin_name").default(null),
-  primary_admin_mailId: text("primary_admin_mailId").default(null),
+  primary_admin_mailid: text("primary_admin_mailId").default(null),
   support_email: text("support_email").default(null),
   phone_no: text("phone_no").default(null),
   alt_phone_no: text("alt_phone_no").default(null),
   max_active_coordinators_allowed: maxActiveCoordinatorsEnum(
     "max_active_coordinators_allowed"
   ).default("5"),
-  timeZone_common_name: timeZoneEnum("timeZone_common_name").default(null),
+  timezone_common_name: timeZoneEnum("timeZone_common_name").default(null),
   region: regionEnum("region").default(null),
   language: languageEnum("language").default("English"),
   profile_img_url: text("profile_img_url").default(""),
