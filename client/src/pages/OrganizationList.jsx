@@ -130,7 +130,7 @@ const OrganizationList = () => {
   if (isLoading) return <Loading />;
   if (error || error.length > 0) <div>there is an error {error.message}</div>;
   return (
-    <div className="flex flex-col gap-3 px-[70px] mb-10">
+    <div className="flex flex-col gap-3 sm:px-[70px] px-4">
       <div className="mt-2 text-[#777777] flex gap-3 items-center  py-2 justify-between">
         <div className="flex items-center gap-3">
           <section className="">
@@ -140,10 +140,10 @@ const OrganizationList = () => {
           </section>
           <section className="">
             <span>
-              <FaAngleRight className="h-3 w-3  " />
+              <FaAngleRight className="h-3 w-3" />
             </span>
           </section>
-          <section>Manage B2B organization</section>
+          <section className="cursor-pointer">Manage B2B organization</section>
         </div>
         <section className="flex justify-center self-end items-center">
           <span className="p-2 hover:bg-[#e9e3fd] bg-[#f0ebff] rounded cursor-pointer">

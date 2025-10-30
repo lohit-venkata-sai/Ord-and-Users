@@ -11,11 +11,11 @@ const App = () => {
         <Headers />
       </header>
       <main>
-        <div className=" h-[52px] px-[70px] py-4 text-[#777777] font-semibold shadow-md flex items-center gap-[32px]">
+        <div className=" h-[52px] px-[70px]  py-0.5 text-[#777777] font-semibold shadow-sm flex items-center gap-[32px]">
           <div
             className={`${
               tab === 0 && "border-b-2 border-blue-500 text-[#6834FF] "
-            } cursor-pointer`}
+            } cursor-pointer py-3.5`}
             onClick={() => setTab(0)}
           >
             Dashboard
@@ -23,14 +23,16 @@ const App = () => {
           <div
             className={`${
               tab === 1 && "border-b-2 border-blue-500 text-[#6834FF]"
-            } cursor-pointer`}
+            } cursor-pointer py-3.5`}
             onClick={() => setTab(1)}
           >
             Manage B2B organizations
           </div>
         </div>
       </main>
-      <div className="h-full">{tab === 0 ? <Loading /> : <ManageB2BOrg />}</div>
+      <div className="h-full ">
+        {tab === 0 ? <Loading /> : <ManageB2BOrg />}
+      </div>
     </div>
   );
 };

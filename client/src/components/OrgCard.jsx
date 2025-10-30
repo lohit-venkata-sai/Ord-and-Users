@@ -45,9 +45,6 @@ export default function OrganizationCard({
       <div className=" ">
         <div className="flex items-center  justify-center gap-2">
           <div className="flex items-center gap-2.5 px-2 py-1 rounded-full cursor-pointer">
-            {/* <span className="w-2 h-2 bg-[#12BB23] rounded-full"></span>
-            <span className="text-xs text-[#12BB23] font-medium">Active</span> */}
-
             {status === "active" && (
               <span className="inline-flex items-center gap-1.5 rounded-full bg-[#E7F8E9] px-3 py-1 text-sm font-medium text-[#12BB23]">
                 <span className="h-2 w-2 rounded-full bg-[#12BB23]"></span>

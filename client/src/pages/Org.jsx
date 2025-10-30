@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { FaAngleRight } from 'react-icons/fa6';
-import { GoHome } from 'react-icons/go';
-import OrganizationCard from '../components/OrgCard';
-import BasicDetails from '../components/BasicDetails';
-import Users from '../components/Users';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { FaAngleRight } from "react-icons/fa6";
+import { GoHome } from "react-icons/go";
+import OrganizationCard from "../components/OrgCard";
+import BasicDetails from "../components/BasicDetails";
+import Users from "../components/Users";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Org = () => {
   const [tab, setTab] = useState(0);
+  const navigate = useNavigate();
   const [orgDetails, setOrgDetails] = useState(null); // State for org data
   const [loading, setLoading] = useState(true); // Optional loading state
   const params = useParams();
@@ -33,7 +34,7 @@ const Org = () => {
   if (loading) return <div>Loading...</div>; // Optional loader
 
   return (
-    <div className="text-black flex flex-col gap-6 px-[70px]">
+    <div className="text-black flex flex-col gap-6 sm:px-[70px] px-4">
       <div className="text-[#777777] flex gap-3 items-center py-2 justify-between">
         <div className="flex items-center gap-3">
           <section>
@@ -46,13 +47,15 @@ const Org = () => {
               <FaAngleRight className="h-3 w-3" />
             </span>
           </section>
-          <section>Manage B2B organization</section>
+          <section onClick={() => navigate("/")} className="cursor-pointer">
+            Manage B2B organization
+          </section>
           <section>
             <span>
               <FaAngleRight className="h-3 w-3" />
             </span>
           </section>
-          <section>Organization details</section>
+          <section className="cursor-pointer">Organization details</section>
         </div>
       </div>
 
@@ -63,7 +66,7 @@ const Org = () => {
             mail={orgDetails.org_mail}
             contact={orgDetails.org_contact}
             url={orgDetails.website_url || ""}
-            status = {orgDetails.status || "inactive"}
+            status={orgDetails.status || "inactive"}
           />
         )}
       </div>
@@ -92,7 +95,11 @@ const Org = () => {
       </div>
 
       <div>
-        {tab === 0 ? <BasicDetails orgDetails={orgDetails} /> : <Users orgDetails={orgDetails} />}
+        {tab === 0 ? (
+          <BasicDetails orgDetails={orgDetails} />
+        ) : (
+          <Users orgDetails={orgDetails} />
+        )}
       </div>
     </div>
   );
