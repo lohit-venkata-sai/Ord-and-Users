@@ -360,7 +360,10 @@ const OrganizationList = () => {
               </main>
               <footer>
                 <div className="flex justify-end gap-3 py-3 px-4">
-                  <button className="py-2.5 px-4 bg-[#F0EBFF] text-[#6834ff] rounded flex justify-center items-center cursor-pointer">
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    className="py-2.5 px-4 bg-[#F0EBFF] text-[#6834ff] rounded flex justify-center items-center cursor-pointer"
+                  >
                     Cancel
                   </button>
                   <Button
