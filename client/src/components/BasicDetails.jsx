@@ -28,6 +28,51 @@ const BasicDetails = ({ orgDetails }) => {
     website: orgDetails?.website_url || "",
   });
 
+  const saveChanges = async () => {
+    try {
+      const payload = {
+        org_name: details.orgName,
+        org_slug: details.orgSlug,
+        primary_admin_name: details.primaryAdminName,
+        primary_admin_mailid: details.primaryAdminMail,
+        support_email: details.supportEmail,
+        phone_no: details.phone,
+        alt_phone_no: details.altPhone,
+        max_active_coordinators_allowed: details.maxCoordinators,
+        timeZone_common_name: details.timeZone,
+        region: details.region,
+        language: details.language,
+        website_url: details.website,
+      };
+
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/org/o/${details.orgSlug}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
+
+      if (!res.ok) {
+        throw new Error(
+          `Failed to update organization details (${res.status})`
+        );
+      }
+
+      const data = await res.json();
+      alert("Organization details updated successfully!");
+
+      setDetails((prev) => ({ ...prev, ...payload }));
+
+      setMode(true);
+    } catch (error) {
+      console.error("Error updating organization details:", error);
+      alert("Failed to update organization details. Please try again.");
+    }
+  };
   const fetchOptions = async () => {
     try {
       const [tzRes, regionRes, langRes, coordRes, statusRes] =
@@ -83,7 +128,9 @@ const BasicDetails = ({ orgDetails }) => {
                 <img src={Pencil} alt="" />
               </button>
             </span>
-            {!mode && <Button text={"save changes >"} />}
+            {!mode && (
+              <Button onClick={() => saveChanges()} text={"save changes >"} />
+            )}
           </section>
         </div>
         <hr />
